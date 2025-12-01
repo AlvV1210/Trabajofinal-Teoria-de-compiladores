@@ -5,7 +5,7 @@
 #include "antlr4-runtime.h"
 #include "../frontend/generated/RecipeLangLexer.h"
 #include "../frontend/generated/RecipeLangParser.h"
-#include "./RecipeVisitorImpl.h"
+#include "./RecipeCodegenVisitor.h"
 
 using namespace antlr4;
 using namespace std;
@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, const char* argv[]) {
 
     if (argc < 2) {
-        cerr << "Uso: ./compilador archivo.recipe\n";
+        cerr << "Uso: ./recipec archivo.recipe\n";
         return 1;
     }
 
@@ -32,9 +32,9 @@ int main(int argc, const char* argv[]) {
     RecipeLangParser parser(&tokens);
     tree::ParseTree *tree = parser.program();
 
-    // Aquí el visitor imprime
-    RecipesVisitorImpl visitor;
+    RecipeCodegenVisitor visitor;
     visitor.visit(tree);
+    visitor.printIR();
 
     return 0;
 }

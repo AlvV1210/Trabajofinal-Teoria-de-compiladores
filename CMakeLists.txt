@@ -29,6 +29,8 @@ llvm_map_components_to_libnames(
     core
     support
     irreader
+    orcjit
+    native
 )
 
 # =============================
@@ -42,8 +44,7 @@ include_directories(/usr/include/antlr4-runtime)
 # =============================
 set(SOURCES
     ${BACKEND_DIR}/main.cpp
-    ${BACKEND_DIR}/RecipeVisitorImpl.cpp
-
+    ${BACKEND_DIR}/RecipeCodegenVisitor.cpp     # <-- Aquí está el visitor LLVM
     ${GENERATED_DIR}/RecipeLangLexer.cpp
     ${GENERATED_DIR}/RecipeLangParser.cpp
     ${GENERATED_DIR}/RecipeLangBaseListener.cpp
