@@ -42,7 +42,7 @@ include_directories(/usr/include/antlr4-runtime)
 # =============================
 set(SOURCES
     ${BACKEND_DIR}/main.cpp
-    ${BACKEND_DIR}/CodegenVisitor.cpp
+    ${BACKEND_DIR}/RecipeVisitorImpl.cpp
 
     ${GENERATED_DIR}/RecipeLangLexer.cpp
     ${GENERATED_DIR}/RecipeLangParser.cpp

@@ -1,54 +1,40 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
-#include <antlr4-runtime.h>
+#include "antlr4-runtime.h"
 #include "../frontend/generated/RecipeLangLexer.h"
 #include "../frontend/generated/RecipeLangParser.h"
-#include "./TreePrinter.h"
-
-#include <llvm/IR/LLVMContext.h>
-#include <llvm/IR/Module.h>
-#include <llvm/IR/IRBuilder.h>
-#include <llvm/Support/raw_ostream.h>
-
-#include "CodegenVisitor.h"
+#include "./RecipeVisitorImpl.h"
 
 using namespace antlr4;
+using namespace std;
 
-int main(int argc, const char **argv) {
+int main(int argc, const char* argv[]) {
+
     if (argc < 2) {
-        std::cerr << "Uso: " << argv[0] << " <archivo.recipe>\n";
+        cerr << "Uso: ./compilador archivo.recipe\n";
         return 1;
     }
 
-    std::ifstream stream(argv[1]);
-    if (!stream) {
-        std::cerr << "No se pudo abrir el archivo: " << argv[1] << "\n";
+    string filename = argv[1];
+    ifstream stream(filename);
+
+    if (!stream.is_open()) {
+        cerr << "No se pudo abrir el archivo: " << filename << "\n";
         return 1;
     }
 
     ANTLRInputStream input(stream);
     RecipeLangLexer lexer(&input);
     CommonTokenStream tokens(&lexer);
+
     RecipeLangParser parser(&tokens);
+    tree::ParseTree *tree = parser.program();
 
-    // Regla raíz de tu gramática:
-    // program : recipeStmt statement* EOF ;
-    auto *tree = parser.program();
-
-    llvm::LLVMContext context;
-    auto module = std::make_unique<llvm::Module>("recipe_module", context);
-    llvm::IRBuilder<> builder(context);
-
-    CodegenVisitor visitor(context, module.get(), builder);
+    // Aquí el visitor imprime
+    RecipesVisitorImpl visitor;
     visitor.visit(tree);
-    visitor.generateIR();
-
-    // Imprimir IR a stdout
-    llvm::outs() << "=== LLVM IR generado ===\n";
-    module->print(llvm::outs(), nullptr);
-
-    printTree(tree);
 
     return 0;
 }
