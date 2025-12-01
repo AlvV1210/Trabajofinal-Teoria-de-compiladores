@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo-upc.png" alt="Logo UPC" width="750"/>
+  <img src="../imagenes/logo-upc.png" alt="Logo UPC" width="750"/>
 </p>
 <h2 align="center">FACULTAD DE INGENIERÍA</h2>
 <h2 align="center">INFORME DEL TRABAJO FINAL</h2>
@@ -249,23 +249,29 @@ Los errores fueron detectados y reportados correctamente:
 
 ## **INSTALAR EXTENSION PARA VS CODE**
 
+  <img src="../imagenes/extension.png" alt="Logo UPC" width="450"/>
+  
 ## **1. Descargar imagen Docker**
-
 ```bash
 docker pull petermontalvo09/llvm:1.0.0
 ```
 ## **2. INICIALIZAR EL CONTENEDOR DESDE DOCKER**
 
+  <img src="../imagenes/iniciar-contenedor-docker.png" alt="Logo UPC" width="650"/>
+  
 ## **3. Iniciar el contenedor**
+
 ```bash
 docker start -ai llvm_2502
 ```
 ## **4. Instalar dependencias**
+
 ```bash
 pacman -Syu --noconfirm
 pacman -S --noconfirm jdk-openjdk wget
 ```
 ## **5. Instalar ANTLR**
+
 ```bash
 wget https://www.antlr.org/download/antlr-4.13.2-complete.jar -O /usr/local/lib/antlr-4.13.1-complete.jar
 echo 'export CLASSPATH=".:/usr/local/lib/antlr-4.13.1-complete.jar:$CLASSPATH"' >> ~/.bashrc
@@ -275,10 +281,12 @@ source ~/.bashrc
 cd /tmp
 ```
 ## **6. Clonar el repositorio**
+
 ```bash
 git clone https://github.com/AlvV1210/Trabajofinal-Teoria-de-compiladores.git
 ```
 ## **7. Instalación de ANTLR4 C++ Runtime**
+
 ```bash
 cd antlr4/runtime/Cpp
 
@@ -308,18 +316,21 @@ sudo cp -r /tmp/antlr4/runtime/Cpp/runtime/src/* /usr/include/antlr4-runtime/
 
 ```
 ## **8. Creas el espacio de trabajo*
+<img src="../imagenes/crear-espacio-trabajo.png" alt="Logo UPC" width="450"/>
 - En VSCODE
-  
+  <img src="../imagenes/espacio-trabajo-1.png" alt="Logo UPC" width="650"/>
+  <img src="../imagenes/espacio-trabajo-1.png" alt="Logo UPC" width="650"/>
 - DARLE A OPEN FOLDER Y ELEGIR EL WORKSPACE
-
+  <img src="../imagenes/seleccion-workspace.png" alt="Logo UPC" width="650"/>
 - DENTRO DE LA CARPETA HACER CLICK EN CLONE REPOSITORY
-
+  <img src="../imagenes/clonar-repositorio.png" alt="Logo UPC" width="650"/>
   ELEGIR EL NOMBRE QUE QUIERAS PARA LA CARPETA DEL REPOSITORIO (YO LE PUSE recipeLang)
 
 - LUEGO SE LE VUELVE A DAR ABRIR FOLDER Y ESTA VEZ ELEGIMOS EL QUE TENGA EL NOMBRE QUE ELEGIMOS DENTRO DEL WORKSPACE
-
+  <img src="../imagenes/abrir-carpeta-repositorio.png" alt="Logo UPC" width="650"/>
 - DENTRO DE LA CARPETA ABRIR UNA NUEVA TERMINAL Y CREAR LA CARPETA BUILD DONDE SE VA A CREAR EL COMPILADOR 
-
+  <img src="../imagenes/mkdir-build.png" alt="Logo UPC" width="450"/>
+  <img src="../imagenes/cd build.png" alt="Logo UPC" width="450"/>
 ## **8. Compilar el proyecto (dentro de build)**
 ```bash
 rm -rf *
